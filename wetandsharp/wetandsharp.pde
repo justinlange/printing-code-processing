@@ -52,17 +52,37 @@ void setup()
     vecArray.add(newVec);
     
     
-    int size = 100;
-    int fade = 100;
+    //int size = 100;
+    float size = random(75,150);
+    //int fade = 20;
+    float fade = random(20,50);
+    boolean strokeMethod = false;
     
+    
+  if(strokeMethod){  
     for(int j=0; j<fade; j++){
       float jf = float(j);
-      strokeWeight(random(.1,1-(jf/fade)));
+      //strokeWeight(jf/fade);
+      strokeWeight(random(.01,10));
       //strokeWeight(random(.1,1-(jf/fade)));
       //println(jf/fade);
-      stroke(whiteClamp,255-(255 * j/fade));    
+      stroke(whiteClamp,230-(255 * j/fade));     
+      //stroke(whiteClamp,whiteClamp-(255 * j/fade));  
       ellipse(softCenter.x, softCenter.y, j*(size/fade), j*(size/fade));      
-    }  
+    } 
+  }
+ if(!strokeMethod){
+      for(int j=0; j<fade; j++){
+      float jf = float(j);
+      //strokeWeight(jf/fade);
+      noStroke();
+      //strokeWeight(random(.1,1-(jf/fade)));
+      //println(jf/fade);
+      //stroke(whiteClamp,230-(255 * j/fade));   
+      fill(whiteClamp,sqrt(255)-sqrt(255 * j/fade));  
+      ellipse(softCenter.x, softCenter.y, j*(size/fade), j*(size/fade));      
+    } 
+ } 
       
       
       //v.mult(random(3,300));
@@ -84,20 +104,34 @@ beginShape();
 translate(width/2,height/2);
 scale(-1,-1);
 translate(-width/2,-height/2);
-scale(1.5,1.5);
+scale(1.9,1.9);
+//int offset = whiteClamp-blackClamp;
+int offset = 5;
+float m =1;
+float mf =.01;
 for(int i=0; i<vecArray.size()-4; i++){
   //fill(150,random(blackClamp,whiteClamp));
-  fill(random(blackClamp,whiteClamp));
+  fill(max(random(blackClamp,blackClamp+offset),blackClamp));
+ 
   PVector vv = (PVector)vecArray.get(i);
   PVector v1 = (PVector)vecArray.get(i+1);
   PVector v2 = (PVector)vecArray.get(i+2);
   PVector v3 = (PVector)vecArray.get(i+2);
   //vv.mult(2);
+  /*
+  vv.mult(m);
+  v1.mult(m);
+  v2.mult(m);
+  */
   println(vv.x,vv.y);
   triangle(vv.x,vv.y,v1.x,v1.y,v2.x,v2.y);
   //rotateY(radians(2));
   rotateX(radians(random(0,30)));
   //vertex(vv.x,vv.y,v1.x);
+  offset++;
+  m+=mf;
+  mf+=.5;
+  
   
 }
 endShape();
