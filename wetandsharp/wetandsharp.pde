@@ -40,7 +40,9 @@ void setup()
   
   
   vecArray = new ArrayList<PVector>();
-  PVector softCenter = new PVector(width-width*gmr, height-height*gmr);
+  //PVector softCenter = new PVector(width-width*gmr, height-height*gmr);
+  PVector softCenter = new PVector(width*.25, height*.25);
+
 
 //beginShape();
   for(int i=0;i<100;i++){
