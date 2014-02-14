@@ -18,32 +18,58 @@ int blackClamp = 30;
 
 ArrayList vecArray;
 PShape s;
+boolean strokeMethod = false;
+
+float size = random(75, 150);
+float fade = random(20, 50);
+
+
 
 
 void setup()
 {
-
-
-  float size = random(75, 150);
-  float fade = random(20, 50);
-  boolean strokeMethod = false;
-
+    String saveString = "data/" + year() + month() + day() + hour() + minute() + second() + "_grab.pdf";  
 
   size(round(print_width * make_bigger), round(print_height * make_bigger));
-  String saveString = "data/" + year() + month() + day() + hour() + minute() + second() + "_grab.pdf";  
-  beginRecord(PDF, saveString); 
+   beginRecord(PDF, saveString); 
+ 
+  
+  
+  
   background(blackClamp);
+
+
+  pushMatrix();
+  translate(200, 200);
+  scale(.5, .5);
+
+  int repVal = 2;
+
+  for (int r=0;r<repVal;r++) {
+    wet();
+    sharp();
+   // translate(-ftX,-fty);
+    //rotateZ(radians(r*10));
+    //rotateY(radians(r*10));
+    rotate(radians(1));
+  }
+
+  popMatrix();
+
+
+
+  endRecord();
+}
+
+void wet() {
+  
   smooth();
   strokeWeight(.1);
   noStroke();
   noFill();
-
   vecArray = new ArrayList<PVector>();
   //PVector softCenter = new PVector(width-width*gmr, height-height*gmr);
   PVector softCenter = new PVector(width*.25, height*.25);
-
-  translate(200,200);
-  scale(.5,.5);
 
   for (int i=0;i<100;i++) {
     int rOffset = 30;
@@ -70,8 +96,10 @@ void setup()
       }
     }
   }
+}
 
-
+void sharp() {
+  pushMatrix();
   stroke(255, 0);
   strokeWeight(0);
   beginShape();
@@ -104,7 +132,7 @@ void setup()
     mf+=.5;
   }
   endShape();
-  
+
   PVector sharpCenter = new PVector(width*gmr, height*gmr);
 
   for (int i=100; i>1; i-=10) {
@@ -127,9 +155,7 @@ void setup()
     translate(width*gmr, height*gmr);
     rotate(radians(30));
   }
-
-
-  endRecord();
+  popMatrix();
 }
 
 
