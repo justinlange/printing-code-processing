@@ -23,6 +23,7 @@ PShape s;
 void setup()
 {
 
+
   float size = random(75, 150);
   float fade = random(20, 50);
   boolean strokeMethod = false;
@@ -41,6 +42,8 @@ void setup()
   //PVector softCenter = new PVector(width-width*gmr, height-height*gmr);
   PVector softCenter = new PVector(width*.25, height*.25);
 
+  translate(200,200);
+  scale(.5,.5);
 
   for (int i=0;i<100;i++) {
     int rOffset = 30;
