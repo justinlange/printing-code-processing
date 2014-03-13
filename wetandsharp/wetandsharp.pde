@@ -20,8 +20,7 @@ ArrayList vecArray;
 PShape s;
 boolean strokeMethod = false;
 
-float size = random(75, 150);
-float fade = random(20, 50);
+
 
 
 
@@ -63,6 +62,10 @@ void setup()
 
 void wet() {
   
+float size = random(75, 150);
+//float fade = random(20, 50);
+float fade = 100;
+  
   smooth();
   strokeWeight(.1);
   noStroke();
@@ -91,7 +94,7 @@ void wet() {
       for (int j=0; j<fade; j++) {
         float jf = float(j);
         noStroke();   
-        fill(whiteClamp, sqrt(255)-sqrt(255 * j/fade));  
+        fill(whiteClamp, 255-j);  
         ellipse(softCenter.x, softCenter.y, j*(size/fade), j*(size/fade));
       }
     }
