@@ -25,19 +25,22 @@ class Cluster
 
         circles[i][j] = new Circle();
         circles[i][j].cPoint.x =  i*(size/units);
-        circles[i][j].cPoint.y = i*(size/units);
+        circles[i][j].cPoint.y = j*(size/units);
         circles[i][j].size = size/units;
-        circles[i][j].c = colors.get(int(random(0, colorCount-1)));
+        circles[i][j].c = colors.get(int(random(0, colorCount)));
       }
     }
   }
 
   void display() {
+    pushMatrix();
+    translate(position.x,position.y);
     for (int i = 0; i< units; i++) {
       for (int j= 0; j< units; j++) {
         circles[i][j].display();
       }
     }
+  popMatrix();
   }
 }
 
